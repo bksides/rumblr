@@ -1,0 +1,35 @@
+<html>
+	<head>{% block head %}
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="/static/assets/stylesheet.css"/>
+		<link rel='stylesheet' href='/static/assets/perfect-scrollbar/css/perfect-scrollbar.css' />
+		<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Homenaje' rel='stylesheet' type='text/css'>
+		<link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="/static/assets/player.js"></script>
+		<script src="/static/assets/ajax.js"></script>
+		<script src="/static/assets/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+	{% endblock %}</head>
+	<body>
+	<audio id="nowplaying">Your browser doesn't support audio!</audio>
+	<div id="nav">
+		<a href="/search">Search</a> &bull; <a href="/about">About</a> &bull; <a href="/playlists">Playlists</a>
+	</div>
+	{% block body %}
+		<h1>{% block header %}{% endblock %}</h1>
+		<p id="desc">{% block desc %}{% endblock %}{% if self.desc() %}<br>{% endif %}
+		{% block link %}{% if auth %}Hello, <a href="/search?blog={{name|urlencode}}">{{name}}</a>!<br><a href="/logout">Log Out</a>{% else %}<a href="{{authurl}}">Log In</a>{% endif %}{% endblock %}</p>{% block content %}{% endblock %}
+		<footer>
+			Created by <a target="blank" href="http://www.brandonksides.com">Brandon Sides</a><br>
+			Favicon by <a href="http://www.flaticon.com/authors/madebyoliver">MadeByOliver</a> from <a href="http://www.flaticon.com">Flaticon.com</a>
+		</footer>
+	{% endblock %}
+	<div id="playercontrol">
+		<img id="backbutton" class="control" src="/static/assets/previous.png"/>
+		<div id="playbutton" class="control"></div>
+		<img id="nextbutton" class="control" src="/static/assets/next.png"/>
+	</div>
+	</body>
+</html>

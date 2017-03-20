@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block head %}
+{{ super() }}
+{% if blog %}
+<script>
+	$(document).ready(function(){
+		search("{{blog}}", "{{tag}}", putResults);
+	});
+</script>
+{% endif %}
+{% endblock %}
+{% block title %}Rumblr{% endblock %}
+{% block header %}Rumblr{% endblock %}
+{% block desc %}Turn Tumblr into your personal playlist!{% endblock %}
+{% block content %}
+<div class="content">
+	<h2>Search</h2>
+	<p>Automatically create playlists based on posts from a blog, posts with a particular tag, or both!</p>
+	<form action="/search">
+	<b>Blog:</b><input type="text" name="blog" id="blog" class="input"><br>
+	<b>Tag:</b><input type="text" name="tag" id="tag" class="input">
+	<button id="searchbutton" type="submit" formmethod="get" class="button">Search!</button>
+	</form>
+</div>
+{% endblock %}
